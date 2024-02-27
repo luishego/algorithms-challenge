@@ -1,4 +1,4 @@
-const randomString = function generateRandomString(length) {
+const generateRandomString = (length) => {
     const charset =
       "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?";
     let result = "";
@@ -9,38 +9,35 @@ const randomString = function generateRandomString(length) {
     }
     return result;
   };
+  const filterChars = (str, charSet) => {
+    return str.filter((char) => charSet.includes(char)).sort();
+  };
+  const filterNumbers = (str) => {
+    const numbers = str.filter((char) => !isNaN(char));
+    const evens = numbers.filter((num) => num % 2 === 0).sort();
+    const odds = numbers.filter((num) => num % 2 !== 0).sort();
+    return [...odds, ...evens ];
+  };
   
-  const filterLowerUpperCaseSpecial = (strArr) => {
-    let filteredChars;
+  function AlphanumericStringSort() {
+    const newString = generateRandomString(50).split("");
+
     const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
     const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const numberChars = "0123456789";
     const specialChars = "!@#$%^&*()_+-=[]{}|;:,.<>?";
   
-    const filteredUppers = strArr
-      .filter((uppers) => uppercaseChars.includes(uppers))
-      .sort();
-    const filteredLowers = strArr
-      .filter((lowers) => lowercaseChars.includes(lowers))
-      .sort();
-    const filteredNumbers = strArr
-      .filter((numbers) => numberChars.includes(numbers))
-      .sort();
-    const filteredSpecial = strArr
-      .filter((special) => specialChars.includes(special))
-      .sort();
+    const filteredLowers = filterChars(newString, lowercaseChars);
+    const filteredUppers = filterChars(newString, uppercaseChars);
+    const filteredNumbers = filterNumbers(newString, numberChars);
+    const filteredSpecial = filterChars(newString, specialChars);
   
-    filteredChars = [...filteredLowers, ...filteredUppers, ...filteredNumbers, ...filteredSpecial];
-    return filteredChars;
-  };
-  
-  function AlphanumericStringSort() {
-    let sortedString;
-    const newString = randomString(50).split("");
-  
-    const filteredChars = filterLowerUpperCaseSpecial(newString);
-  
-    sortedString = [...filteredChars];
+    const sortedString = [
+      ...filteredLowers,
+      ...filteredUppers,
+      ...filteredNumbers,
+      ...filteredSpecial,
+    ];
   
     console.log(sortedString);
   }
