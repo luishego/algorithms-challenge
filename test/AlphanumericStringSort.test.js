@@ -1,6 +1,5 @@
-const { generateRandomString, filterChars, filterNumbers, alphanumericStringSort } = require('./yourFileName.js');
+const { generateRandomString, filterChars, filterNumbers, alphanumericStringSort } = require('./AlphanumericStringSort.js');
 
-// Importing the necessary functions from the file you're testing
 
 describe('generateRandomString', () => {
   test('should generate a random string of specified length', () => {
@@ -28,7 +27,8 @@ describe('filterNumbers', () => {
 
 describe('alphanumericStringSort', () => {
   test('should return a sorted string with characters grouped accordingly', () => {
+    const inputString = ':JK}m6T;wl';
     const result = alphanumericStringSort();
-    // Write your assertions here based on the expected output
+    expect(result).toEqual(':JK}m6T;wl');
   });
 });
