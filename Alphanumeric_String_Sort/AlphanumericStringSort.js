@@ -37,8 +37,9 @@ const generateRandomString = (length) => {
       ...filteredUppers,
       ...filteredNumbers,
       ...filteredSpecial,
-    ];
-  
+    ].join('').toString();
+
+    console.log(newString)
     console.log(sortedString);
   }
   
